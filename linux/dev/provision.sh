@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
+# Bail if keypair is not present
+if [ ! -f /vagrant/id_rsa ]
+then
+	echo "Private key not found, exiting"
+	exit 1
+fi
+
 # Install all required packages
 sudo apt-get -y install build-essential libssl-dev vim git tmux curl
 
 # Install ssh keys
 mkdir -p ~/.ssh
-cp /vagrant/keypair/id_rsa ~/.ssh
+cp /vagrant/id_rsa ~/.ssh
 chmod 600 ~/.ssh/id_rsa 
 
 # Install rcm, bring in dotfiles
