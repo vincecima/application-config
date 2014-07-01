@@ -9,6 +9,5 @@ cinst lockhunter
 cinst powershell4
 cinst sublimetext2
 cinst sumatrapdf.install
-cinst TeraCopy
 cinst winmerge
 cinst winsplit
