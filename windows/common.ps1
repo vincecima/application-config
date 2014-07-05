@@ -1,5 +1,5 @@
 Update-ExecutionPolicy
-Set-ExplorerOptions -showHidenFilesFoldersDrives -showFileExtensions
+Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
  
 cinst 1password
 cinst 7zip
