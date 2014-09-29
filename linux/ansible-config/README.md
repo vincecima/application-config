@@ -10,5 +10,5 @@ ansible-playbook -i inventory/development playbooks/bootstrap.yml --sudo -k -u <
 
 Run to apply rest of configuration
 ```bash
-ansible-playbook -i inventory/development playbooks/site.yml -u sysadmin --sudo --ask-vault
+ansible-playbook -i inventory/development playbooks/<playbook> -u sysadmin --sudo --ask-vault
 ```
