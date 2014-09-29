@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "opscode-ubuntu-14.04"  
+  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
+
+  config.vm.define :dev do |dev|
+    dev.vm.provision "shell", path: "bootstrap.sh", privileged: false
+    dev.vm.network "private_network", ip: "192.168.10.10"
+    dev.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh"
+    dev.vm.network :forwarded_port, guest: 3000, host: 3000, id: "rails"
+    dev.vm.network :forwarded_port, guest: 4000, host: 4000, id: "jekyll"
+    dev.vm.synced_folder "./ansible-config", "/home/vagrant/ansible-config", mount_options: ["fmode=644"]
+    dev.vm.synced_folder "./projects", "/home/vagrant/projects", mount_options: ["fmode=644"]
+  end
+
+  config.vm.define :apps do |apps|
+    apps.vm.network "private_network", ip: "192.168.10.12"
+    apps.vm.network :forwarded_port, guest: 22, host: 2201, id: "ssh"
+    apps.vm.network :forwarded_port, guest: 80, host: 8080, id: "http"
+    apps.vm.synced_folder ".", "/vagrant", disabled: true
+  end
+end

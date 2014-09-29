@@ -1,0 +1,10 @@
+- name: ensure monit is at the latest version
+  apt: pkg=monit state=latest
+
+- name: deploy configuration
+  template: src=monitrc.j2 dest=/etc/monit/monitrc mode=600
+  notify:
+    - restart monit
+
+- name: ensure monit runs at boot
+  service: name=monit enabled=yes

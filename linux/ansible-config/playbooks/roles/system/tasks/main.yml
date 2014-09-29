@@ -1,0 +1,5 @@
+- name: set hostname
+  hostname: name={{ hostname }}
+
+- name: set fqdn
+  lineinfile: dest=/etc/hosts line='127.0.0.1 {{ hostname }}.vincecima.com {{ hostname }}'

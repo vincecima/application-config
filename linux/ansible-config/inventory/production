@@ -1,0 +1,7 @@
+arrow ansible_ssh_host=104.131.218.94
+
+[webservers]
+arrow hostname=arrow
+
+[www.vincecima.com]
+arrow server_name="localhost www.vincecima.com"

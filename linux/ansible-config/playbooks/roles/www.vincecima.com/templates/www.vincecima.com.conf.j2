@@ -1,0 +1,18 @@
+server {
+	root /var/apps/www.vincecima.com;
+	index index.html;
+
+	server_name {{ server_name }};
+
+	charset utf-8;
+
+        location ~ ^/(assets)/  {
+                gzip_static on;
+                expires max;
+                add_header Cache-Control public;
+        }
+
+	location / {
+		try_files $uri $uri/ /index.html;
+	}
+}

@@ -1,0 +1,20 @@
+- name: ensure nginx is at the latest version
+  apt: pkg=nginx state=latest
+
+- name: deploy configuration
+  copy: src=nginx.conf dest=/etc/nginx/enginx.conf mode=600
+  notify:
+    - restart nginx
+
+- name: remove default site
+  file: state=absent path=/etc/nginx/sites-enabled/default
+  notify:
+    - restart nginx
+
+- name: ensure nginx runs at boot
+  service: name=nginx enabled=yes
+
+- name: deploy monit config for nginx
+  copy: src=nginx.monit.conf dest=/etc/monit/conf.d/nginx.monit.conf mode=600
+  notify:
+    - restart monit

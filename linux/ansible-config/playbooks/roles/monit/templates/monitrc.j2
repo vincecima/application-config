@@ -1,0 +1,23 @@
+set daemon 30
+
+set logfile /var/log/monit.log
+
+set idfile /var/lib/monit/id
+
+set statefile /var/lib/monit/state
+
+set eventqueue
+	basedir /var/lib/monit/events
+	slots 100
+
+set httpd port 2812 and
+	allow localhost
+	allow monit:monit
+
+set mailserver mail.messagingengine.com port 587
+username "{{ fastmail_username }}" password "{{ fastmail_password }}" using TLSv1
+
+set mail-format { from: {{ from_address }} }
+set alert {{ to_address }}
+
+include /etc/monit/conf.d/*

@@ -1,0 +1,13 @@
+- name: create www.vincecima.com dir
+  file: path=/var/apps/www.vincecima.com state=directory owner=deployer group=deployer mode=0755
+
+- name: deploy nginx conf to serve content
+  template: src=www.vincecima.com.conf.j2 dest=/etc/nginx/sites-available/www.vincecima.com.conf mode=640
+  notify:
+  - restart nginx
+
+- name: activate nginx conf to serve content
+  file: src=/etc/nginx/sites-available/www.vincecima.com.conf dest=/etc/nginx/sites-enabled/www.vincecima.com.conf state=link
+  notify:
+  - restart nginx
+

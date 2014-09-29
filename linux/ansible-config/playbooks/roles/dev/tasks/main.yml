@@ -1,0 +1,42 @@
+- name: deploy private key
+  template: src=id_rsa.j2 dest=/home/{{ansible_ssh_user}}/.ssh/id_rsa mode=0400
+
+- name: install required packages
+  apt: name={{item}} update_cache=yes state=present
+  sudo: yes
+  with_items:
+  - build-essential
+  - libssl-dev
+  - tmux
+  - curl
+
+- name: download rcm
+  get_url: url=https://thoughtbot.github.io/rcm/debs/rcm_1.2.3-1_all.deb dest=/tmp/rcm.deb mode=0400
+
+- name: install rcm
+  apt: deb=/tmp/rcm.deb
+  sudo: yes
+
+- name: clone dotfiles repo
+  git: repo=ssh://git@github.com/vincecima/dotfiles.git dest=/home/{{ansible_ssh_user}}/.dotfiles accept_hostkey=true
+
+- name: use rcm to link dotfiles
+  command: rcup -fv
+
+- name: install rbenv
+  git: repo=https://github.com/sstephenson/rbenv.git dest=/home/{{ansible_ssh_user}}/.rbenv
+
+- name: install ruby build
+  git: repo=https://github.com/sstephenson/ruby-build.git dest=/home/{{ansible_ssh_user}}/.rbenv/plugins/ruby-build
+
+- name: download golang
+  get_url: url=http://golang.org/dl/go1.3.linux-amd64.tar.gz dest=/tmp/go.tar.gz mode=0440
+
+- name: create go home
+  file: path=/home/{{ansible_ssh_user}}/.go state=directory
+
+- name: install go
+  command: tar -C /home/{{ansible_ssh_user}}/.go -xzf /tmp/go.tar.gz --strip-components=1
+
+- name: install nvm
+  git: repo=https://github.com/creationix/nvm.git dest=/home/{{ansible_ssh_user}}/.nvm
