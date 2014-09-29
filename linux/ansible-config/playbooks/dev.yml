@@ -1,5 +1,0 @@
-- name: setup dev environment
-  hosts: dev
-  roles:
-    - dev
-    

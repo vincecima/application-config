@@ -1,5 +1,4 @@
 grace ansible_ssh_host=192.168.10.12
-dev ansible_ssh_host=localhost ansible_connection=local
 
 [webservers]
 grace hostname=grace

@@ -1,6 +1,6 @@
-Run once to provision dev box
+Run once to provision control box
 ```bash
-ansible-playbook -i inventory/development playbooks/dev.yml --ask-vault
+ansible-playbook -i inventory/control playbooks/control.yml --ask-vault
 ```
 
 Run once to provision app boxes for further communication
