@@ -1,10 +1,5 @@
-cinst battle.net
 cinst crashplan
-cinst Dolphin
-cinst f.lux
-cinst handbrake
 cinst iTunes
-cinst origin
 cinst plex-home-theater
 cinst plexmediaserver
 cinst qbittorrent
@@ -13,6 +8,5 @@ cinst spotify
 cinst steam
 cinst unitywebplayer
 cinst virtualbox
-cinst VisualStudioExpress2013WindowsDesktop
 cinst youtube-dl
 cinst you-need-a-budget
