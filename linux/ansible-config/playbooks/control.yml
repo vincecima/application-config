@@ -2,4 +2,14 @@
   hosts: control
   roles:
     - dev
-    
+
+- name: install Postgres
+  hosts: control
+  sudo: true
+  roles:
+  - ext/ANXS.postgresql
+  vars:
+    postgresql_databases:
+      - name: "{{ ansible_ssh_user }}"
+    postgresql_users:
+      - name: "{{ ansible_ssh_user }}"
