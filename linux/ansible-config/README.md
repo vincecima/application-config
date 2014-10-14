@@ -5,7 +5,7 @@ ansible-galaxy install -r requirements.txt -p playbooks/roles/ext
 
 Run once to provision control box
 ```bash
-ansible-playbook -i inventory/control playbooks/control.yml --ask-vault -K
+ansible-playbook -i inventory/control playbooks/control.yml --ask-vault
 ```
 
 Run once to provision app boxes for further communication
