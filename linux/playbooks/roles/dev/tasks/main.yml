@@ -5,10 +5,16 @@
   apt: name={{item}} update_cache=yes state=present
   sudo: yes
   with_items:
-  - build-essential
-  - libssl-dev
   - tmux
   - curl
+  - autoconf
+  - bison
+  - build-essential
+  - libssl-dev
+  - libyaml-dev
+  - libreadline6-dev
+  - zlib1g-dev
+  - libncurses5-dev
 
 - name: download rcm
   get_url: url=https://thoughtbot.github.io/rcm/debs/rcm_1.2.3-1_all.deb dest=/tmp/rcm.deb mode=0400
