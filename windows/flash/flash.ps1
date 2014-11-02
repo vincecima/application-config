@@ -1,5 +1,6 @@
 cinst crashplan
 cinst iTunes
+cinst mingw-get
 cinst plex-home-theater
 cinst plexmediaserver
 cinst qbittorrent
