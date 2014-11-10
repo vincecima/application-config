@@ -1,5 +1,6 @@
-- name: deploy private key
-  template: src=id_rsa.j2 dest=/home/{{ansible_ssh_user}}/.ssh/id_rsa mode=0400
+- name: add Sublime Text PPA
+  apt_repository: repo='ppa:webupd8team/sublime-text-2'
+  sudo: yes
 
 - name: install required packages
   apt: name={{item}} update_cache=yes state=present
@@ -15,6 +16,7 @@
   - libreadline6-dev
   - zlib1g-dev
   - libncurses5-dev
+  - sublime-text
 
 - name: download rcm
   get_url: url=https://thoughtbot.github.io/rcm/debs/rcm_1.2.3-1_all.deb dest=/tmp/rcm.deb mode=0400
