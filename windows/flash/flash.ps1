@@ -1,6 +1,5 @@
 cinst crashplan
 cinst iTunes
-cinst mingw-get
 cinst plex-home-theater
 cinst plexmediaserver
 cinst qbittorrent
@@ -8,6 +7,6 @@ cinst sharpkeys
 cinst spotify
 cinst steam
 cinst unitywebplayer
-cinst virtualbox
+cinst vmwareplayer
 cinst youtube-dl
 cinst you-need-a-budget
