@@ -1,12 +1,12 @@
-cinst crashplan
-cinst iTunes
-cinst plex-home-theater
-cinst plexmediaserver
-cinst qbittorrent
-cinst sharpkeys
-cinst spotify
-cinst steam
-cinst unitywebplayer
-cinst vmwareplayer
-cinst youtube-dl
-cinst you-need-a-budget
+choco install crashplan
+choco install iTunes
+choco install plex-home-theater
+choco install plexmediaserver
+choco install qbittorrent
+choco install sharpkeys
+choco install spotify
+choco install steam
+choco install unitywebplayer
+choco install vmwareplayer
+choco install youtube-dl
+choco install you-need-a-budget
