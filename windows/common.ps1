@@ -4,7 +4,7 @@ Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtec
 cinst 1password
 cinst 7zip
 cinst dropbox
-cinst GoogleChrome
+cinst google-chrome-x64
 cinst lockhunter
 cinst powershell4
 cinst sublimetext2
