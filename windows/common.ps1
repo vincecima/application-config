@@ -10,4 +10,3 @@ cinst powershell4
 cinst sublimetext2
 cinst sumatrapdf.install
 cinst winmerge
-cinst winsplit
