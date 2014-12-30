@@ -1,0 +1,19 @@
+---
+- name: add Atom PPA
+  apt_repository: repo='ppa:webupd8team/atom'
+  sudo: yes
+
+- name: add Google Chrome signing key
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+  sudo: yes
+
+- name: add Google Chrome repository
+  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' state=present
+  sudo: yes
+
+- name: install base development packages
+  apt: name={{item}} update_cache=yes state=present
+  sudo: yes
+  with_items:
+    - atom
+    - google-chrome-stable
