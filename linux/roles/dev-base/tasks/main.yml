@@ -11,9 +11,18 @@
   apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' state=present
   sudo: yes
 
+- name: add Docker signing key
+  apt_key: keyserver=keyserver.ubuntu.com id=36A1D7869245C8950F966E92D8576A8BA88D21E9 state=present
+  sudo: yes
+
+- name: add Docker repository
+  apt_repository: repo='deb https://get.docker.com/ubuntu docker main' state=present
+  sudo: yes
+
 - name: install base development packages
   apt: name={{item}} update_cache=yes state=present
   sudo: yes
   with_items:
     - atom
     - google-chrome-stable
+    - lxc-docker
