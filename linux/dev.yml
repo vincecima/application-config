@@ -1,6 +1,7 @@
 ---
 - hosts: dev
   roles:
+    - vpn
     - dev-base
     - ruby-dev
     - nodejs-dev
