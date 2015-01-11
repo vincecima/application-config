@@ -27,3 +27,17 @@
    dest: /usr/local/bin/fig
    mode: 0755
    sha256sum: 2cf040877781fd009f0d4d1fd8c0eeffcc01d4d7a5ef534ba0423ff4e0286b50
+
+- name: create local bin directory
+  file:
+    path: /home/{{ansible_ssh_user}}/bin
+    state: directory
+    owner: "{{ansible_ssh_user}}"
+    group: "{{ansible_ssh_user}}"
+    mode: 0755
+
+- name: install shim for connecting to VPN
+  copy:
+    src: tc-vpn-connect.sh
+    dest: /home/{{ansible_ssh_user}}/bin/tc-vpn-connect.sh
+    mode: 0744
