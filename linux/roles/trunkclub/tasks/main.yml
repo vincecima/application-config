@@ -19,3 +19,11 @@
   with_items:
     - openvpn
     - lxc-docker
+
+- name: install fig
+  sudo: yes
+  get_url:
+   url: https://github.com/docker/fig/releases/download/1.0.0/fig-Linux-x86_64
+   dest: /usr/local/bin/fig
+   mode: 0755
+   sha256sum: 2cf040877781fd009f0d4d1fd8c0eeffcc01d4d7a5ef534ba0423ff4e0286b50
