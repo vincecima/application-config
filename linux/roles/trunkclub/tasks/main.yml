@@ -38,6 +38,6 @@
 
 - name: install shim for connecting to VPN
   copy:
-    src: tc-vpn-connect.sh
-    dest: /home/{{ansible_ssh_user}}/bin/tc-vpn-connect.sh
+    src: tc-vpn-connect
+    dest: /home/{{ansible_ssh_user}}/bin/tc-vpn-connect
     mode: 0744
