@@ -7,6 +7,12 @@
   apt_repository: repo='deb https://get.docker.com/ubuntu docker main' state=present
   sudo: yes
 
+- name: create directory for OpenVPN profile
+  file: path=/home/{{ansible_ssh_user}}/Documents/OpenVPNProfiles state=directory mode=0700
+
+- name: copy OpenVPN profile to user directory
+  copy: src=client.ovpn dest="/home/{{ansible_ssh_user}}/Documents/OpenVPNProfiles/tc.ovpn" owner={{ansible_ssh_user}} group={{ansible_ssh_user}} mode=0770
+
 - name: install packages needed for working on TrunkClub projects
   apt: name={{item}} update_cache=yes state=present
   sudo: yes
