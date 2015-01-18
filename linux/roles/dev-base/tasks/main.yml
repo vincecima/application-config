@@ -30,3 +30,11 @@
   command: rcup -fv
   register: rcup_result
   changed_when: "'->' in rcup_result.stdout"
+
+- name: create local bin directory
+  file:
+    path: /home/{{ansible_ssh_user}}/bin
+    state: directory
+    owner: "{{ansible_ssh_user}}"
+    group: "{{ansible_ssh_user}}"
+    mode: 0755

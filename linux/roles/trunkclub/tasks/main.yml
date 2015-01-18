@@ -39,14 +39,6 @@
   apt: deb=/tmp/vagrant.deb
   sudo: yes
 
-- name: create local bin directory
-  file:
-    path: /home/{{ansible_ssh_user}}/bin
-    state: directory
-    owner: "{{ansible_ssh_user}}"
-    group: "{{ansible_ssh_user}}"
-    mode: 0755
-
 - name: install shim for connecting to VPN
   copy:
     src: tc-vpn-connect
