@@ -1,0 +1,40 @@
+---
+- name: add Atom PPA
+  apt_repository: repo='ppa:webupd8team/atom'
+  sudo: yes
+
+- name: add Google Chrome signing key
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+  sudo: yes
+
+- name: add Google Chrome repository
+  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' state=present
+  sudo: yes
+
+- name: add rcm repository
+  apt_repository: repo='ppa:martin-frost/thoughtbot-rcm'
+  sudo: yes
+
+- name: install base development packages
+  apt: name={{item}} update_cache=yes state=present
+  sudo: yes
+  with_items:
+    - atom
+    - google-chrome-stable
+    - rcm
+
+- name: clone dotfiles repo
+  git: repo=ssh://git@github.com/vincecima/dotfiles.git dest=/home/{{ansible_ssh_user}}/.dotfiles
+
+- name: use rcm to link dotfiles
+  command: rcup -fv
+  register: rcup_result
+  changed_when: "'->' in rcup_result.stdout"
+
+- name: create local bin directory
+  file:
+    path: /home/{{ansible_ssh_user}}/bin
+    state: directory
+    owner: "{{ansible_ssh_user}}"
+    group: "{{ansible_ssh_user}}"
+    mode: 0755

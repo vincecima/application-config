@@ -1,0 +1,10 @@
+---
+- name: install nvm
+  git: repo=https://github.com/creationix/nvm.git dest=/home/{{ ansible_ssh_user }}/.nvm version=v0.22.0
+
+- name: install packages needed for compilation of/linking to nodejs
+  apt: name={{item}} update_cache=yes state=present
+  sudo: yes
+  with_items:
+    - build-essential
+    - libssl-dev
