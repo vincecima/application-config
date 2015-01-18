@@ -1,0 +1,11 @@
+---
+- hosts: webservers
+  roles:
+    - bootstrap
+    - system
+    - nginx
+- hosts: www.vincecima.com
+  handlers:
+  - include: handlers.yml
+  roles:
+    - www.vincecima.com

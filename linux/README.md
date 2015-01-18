@@ -1,13 +1,3 @@
-Download 3rd party roles
-```bash
-ansible-galaxy install -r requirements.txt -p playbooks/roles/ext
-```
-
-Run once to provision control box
-```bash
-ansible-playbook -i inventory/control playbooks/control.yml --ask-vault --ask-sudo
-```
-
 Run once to provision app boxes for further communication
 ```bash
 ansible-playbook -i inventory/development playbooks/bootstrap.yml --sudo -k -u <username>
