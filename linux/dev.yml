@@ -3,7 +3,6 @@
   vars:
     atom_packages_packages:
       - git-plus
-      - recent-files
   roles:
     - dev-base
     - ext/hnakamur.atom-packages
