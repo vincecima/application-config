@@ -1,17 +1,10 @@
-- name: setup system defaults
-  hosts: webservers
+---
+- hosts: webservers
   roles:
+    - bootstrap
     - system
-
-- name: setup nginx
-  hosts: webservers
-  handlers:
-  - include: handlers.yml
-  roles:
     - nginx
-
-- name: host www.vincecima.com static content via nginx
-  hosts: www.vincecima.com
+- hosts: www.vincecima.com
   handlers:
   - include: handlers.yml
   roles:
