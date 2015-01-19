@@ -6,16 +6,6 @@
   notify:
     - restart nginx
 
-- name: deploy nginx conf to serve www.vincecima.com content
-  template: src=www.vincecima.com.conf.j2 dest=/etc/nginx/sites-available/www.vincecima.com.conf mode=640
-  notify:
-  - restart nginx
-
-- name: activate nginx conf to serve www.vincecima.com content
-  file: src=/etc/nginx/sites-available/www.vincecima.com.conf dest=/etc/nginx/sites-enabled/www.vincecima.com.conf state=link
-  notify:
-  - restart nginx
-
 - name: remove default site
   file: state=absent path=/etc/nginx/sites-enabled/default
   notify:
