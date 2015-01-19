@@ -3,12 +3,12 @@ Download 3rd party roles
 ansible-galaxy install -r requirements.yml -p roles/ext
 ```
 
-Run once to provision app boxes for further communication
+Run once to provision new boxes for further communication
 ```bash
-ansible-playbook -i inventory/development playbooks/bootstrap.yml --sudo -k -u <username>
+ansible-playbook -i inventory/development bootstrap.yml --sudo -u USERNAME --limit=SUBSET
 ```
 
 Run to apply rest of configuration
 ```bash
-ansible-playbook -i inventory/development playbooks/<playbook> -u sysadmin --sudo --ask-vault
+ansible-playbook -i inventory/development site.yml -u sysadmin --sudo --ask-vault
 ```
