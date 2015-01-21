@@ -1,0 +1,8 @@
+---
+- name: Add destination to rsyslog
+  sudo: yes
+  lineinfile:
+    dest: /etc/rsyslog.conf
+    line: "*.* {{ papertrail_connection_string }}"
+  notify:
+    - restart rsyslog
