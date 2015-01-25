@@ -1,4 +1,6 @@
 ---
+- include_vars: destination.yml
+
 - name: Add destination to rsyslog
   sudo: yes
   lineinfile:
