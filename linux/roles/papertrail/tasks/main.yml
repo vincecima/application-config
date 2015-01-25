@@ -3,6 +3,33 @@
   sudo: yes
   lineinfile:
     dest: /etc/rsyslog.conf
-    line: "*.* {{ papertrail_connection_string }}"
+    line: "*.* @{{ papertrail_destination_host }}:{{ papertrail_destination_port }}"
   notify:
     - restart rsyslog
+
+- name: install remote_syslog
+  sudo: yes
+  copy:
+    src: remote_syslog
+    dest: /usr/local/bin/remote_syslog
+    mode: 0755
+
+- name: install remote_syslog upstart conf
+  sudo: yes
+  copy:
+    src: remote_syslog.upstart.conf
+    dest: /etc/init/remote_syslog.conf
+
+- name: install remote_syslog conf
+  sudo: yes
+  template:
+    src: log_files.yml.j2
+    dest: /etc/log_files.yml
+  notify:
+    - restart remote_syslog
+
+- name: ensure service is running
+  sudo: yes
+  service:
+    name: remote_syslog
+    state: started
