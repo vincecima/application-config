@@ -10,8 +10,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :grace do |apps|
     apps.vm.network "private_network", ip: "192.168.10.12"
-    apps.vm.network :forwarded_port, guest: 22, host: 2201, id: "ssh"
-    apps.vm.network :forwarded_port, guest: 80, host: 8080, id: "http"
     apps.vm.synced_folder ".", "/vagrant", disabled: true
   end
 end
