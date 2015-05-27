@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
-sudo apt-add-repository -y ppa:ansible/ansible
-sudo apt-get -y update
-sudo apt-get -y install ansible git
+# Remove undesirable side effects of CDPATH variable
+unset CDPATH
+# Change current working directory to the directory contains this script
+cd "$( dirname "${BASH_SOURCE[0]}" )"
+
+# Initialize Bash Booster
+source bashbooster.sh
+
+bb-log-info "Adding Ansible PPA"
+apt-add-repository -y ppa:ansible/ansible
+bb-log-info "Installing Ansible and GIT"
+bb-apt-install ansible git
