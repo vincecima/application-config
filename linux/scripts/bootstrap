@@ -8,5 +8,7 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 # Initialize Bash Booster
 source bashbooster.sh
 
+bb-log-info "Adding Ansible PPA"
 apt-add-repository -y ppa:ansible/ansible
+bb-log-info "Installing Ansible and GIT"
 bb-apt-install ansible git
