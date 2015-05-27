@@ -1,3 +1,8 @@
+Bootsrap Ansible
+```bash
+sudo scripts/bootstrap
+```
+
 Download 3rd party roles
 ```bash
 ansible-galaxy install -r requirements.yml -p roles/ext
