@@ -1,10 +1,6 @@
 ---
 - hosts: dev
-  vars:
-    atom_packages_packages:
-      - git-plus
   roles:
     - dev-base
-    - ext/hnakamur.atom-packages
     - ruby-dev
     - nodejs-dev
