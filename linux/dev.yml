@@ -1,6 +1,0 @@
----
-- hosts: dev
-  roles:
-    - dev-base
-    - ruby-dev
-    - nodejs-dev

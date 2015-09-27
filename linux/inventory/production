@@ -1,8 +1,4 @@
 arrow ansible_ssh_host=104.131.218.94
-dev ansible_connection=local
-
-[dev]
-dev
 
 [webservers]
 arrow hostname=arrow

@@ -3,11 +3,6 @@ Bootsrap Ansible
 sudo scripts/bootstrap
 ```
 
-Run to apply dev configuration
-```bash
-ansible-playbook -i inventory/production dev.yml --ask-sudo
-```
-
 Run once to provision new boxes for further communication
 ```bash
 ansible-playbook -i inventory/development bootstrap.yml --sudo -u USERNAME --limit=SUBSET
