@@ -3,6 +3,10 @@
   apt_repository: repo='ppa:webupd8team/atom'
   sudo: yes
 
+- name: add OpenJDK 8 PPA
+  apt_repository: repo='ppa:openjdk-r/ppa'
+  sudo: yes
+
 - name: add Google Chrome signing key
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
   sudo: yes
@@ -22,6 +26,7 @@
     - atom
     - google-chrome-stable
     - rcm
+    - openjdk-8-jdk
 
 - name: clone dotfiles repo
   git: repo=ssh://git@github.com/vincecima/dotfiles.git dest=/home/{{ansible_ssh_user}}/.dotfiles
@@ -38,3 +43,39 @@
     owner: "{{ansible_ssh_user}}"
     group: "{{ansible_ssh_user}}"
     mode: 0755
+
+- name: download IntelliJ 14 Ultimate
+  get_url:
+    url: http://download.jetbrains.com/idea/ideaIU-14.1.3.tar.gz
+    dest: /tmp/ideaIU.tar.gz
+    sha256sum: 91df935cf0caded29b9a15353c609286a50f14f73d17ed6967ae1bb46e1e8fba
+
+- name: create IntelliJ directory in /tmp
+  file:
+    path: /tmp/intelli-j
+    state: directory
+
+- name: unarchive IntelliJ to /tmp
+  unarchive:
+    src: /tmp/ideaIU.tar.gz
+    dest: /tmp/intelli-j
+
+- name: capture IntelliJ dir name
+  shell: ls -d /tmp/intelli-j/idea-IU*
+  register: intelli_j_dir_name
+
+- name: copy IntelliJ to /opt
+  synchronize:
+    src: "{{intelli_j_dir_name.stdout}}/"
+    dest: /opt/intelli-j
+    archive: true
+  sudo: true
+
+- name: set owner/group on IntelliJ
+  file:
+    path: /opt/intelli-j
+    state: directory
+    recurse: true
+    owner: root
+    group: root
+  sudo: true

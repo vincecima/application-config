@@ -1,3 +1,8 @@
+Bootsrap Ansible
+```bash
+sudo scripts/bootstrap
+```
+
 Run to apply dev configuration
 ```bash
 ansible-playbook -i inventory/production dev.yml --ask-sudo
