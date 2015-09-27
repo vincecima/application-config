@@ -1,5 +1,4 @@
 arrow ansible_ssh_host=104.131.218.94
-isotope ansible_ssh_host=104.245.32.253
 dev ansible_connection=local
 
 [dev]
@@ -7,7 +6,6 @@ dev
 
 [webservers]
 arrow hostname=arrow
-isotope hostname=isotope
 
 [www.vincecima.com]
 arrow server_name="localhost www.vincecima.com"
