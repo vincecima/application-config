@@ -1,4 +1,0 @@
----
-files_to_log:
-  - /var/log/nginx/access.log
-  - /var/log/nginx/error.log
