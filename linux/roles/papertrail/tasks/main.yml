@@ -1,37 +1,36 @@
 ---
 - include_vars: destination.yml
 
-- name: Add destination to rsyslog
+- name: Remove destination from rsyslog
   sudo: yes
   lineinfile:
     dest: /etc/rsyslog.conf
     line: "*.* @{{ papertrail_destination_host }}:{{ papertrail_destination_port }}"
+    state: absent
   notify:
     - restart rsyslog
 
-- name: install remote_syslog
-  sudo: yes
-  copy:
-    src: remote_syslog
-    dest: /usr/local/bin/remote_syslog
-    mode: 0755
-
-- name: install remote_syslog upstart conf
-  sudo: yes
-  copy:
-    src: remote_syslog.upstart.conf
-    dest: /etc/init/remote_syslog.conf
-
-- name: install remote_syslog conf
-  sudo: yes
-  template:
-    src: log_files.yml.j2
-    dest: /etc/log_files.yml
-  notify:
-    - restart remote_syslog
-
-- name: ensure service is running
+- name: ensure service is stopped
   sudo: yes
   service:
     name: remote_syslog
-    state: started
+    state: stopped
+  ignore_errors: yes
+
+- name: remove remote_syslog
+  sudo: yes
+  file:
+    dest: /usr/local/bin/remote_syslog
+    state: absent
+
+- name: remove remote_syslog upstart conf
+  sudo: yes
+  file:
+    dest: /etc/init/remote_syslog.conf
+    state: absent
+
+- name: remove remote_syslog conf
+  sudo: yes
+  file:
+    dest: /etc/log_files.yml
+    state: absent
