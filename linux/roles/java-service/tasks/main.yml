@@ -1,0 +1,42 @@
+---
+- name: add openjdk ppa
+  apt_repository:
+    repo: 'ppa:openjdk-r/ppa'
+
+- name: install java runtime
+  apt:
+    pkg: openjdk-8-jre
+    state: latest
+    update_cache: yes
+
+- name: create parent directories
+  file:
+    state: directory
+    path: /var/{{ item }}
+    owner: deployer
+    group: deployer
+    mode: 0755
+  with_items:
+    - app
+    - log/app
+
+- name: create app directory
+  file:
+    state: directory
+    path: /var/app/{{ app_name }}
+    owner: deployer
+    group: deployer
+    mode: 0755
+
+- name: add upstart config
+  template:
+    src: upstart.conf.j2
+    dest: /etc/init/{{ app_name }}.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: enable app service
+  service:
+    name: "{{ app_name }}"
+    state: started

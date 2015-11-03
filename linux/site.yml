@@ -7,3 +7,8 @@
 - hosts: www.vincecima.com
   roles:
     - www.vincecima.com
+- hosts: how-much-time-left
+  roles:
+    - role: java-service
+      app_name: how-much-time-left
+      script_command: java -jar {{app_name}}-all.jar

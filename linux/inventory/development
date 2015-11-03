@@ -5,3 +5,6 @@ grace hostname=grace
 
 [www.vincecima.com]
 grace server_name="localhost www.vincecima.staging"
+
+[how-much-time-left]
+grace
