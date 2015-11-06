@@ -1,4 +1,18 @@
 ---
+- hosts: postgres
+  roles:
+    - role: ext/ANXS.postgresql
+      postgresql_version: 9.4
+      postgresql_databases:
+        - name: how-much-time-left
+          uuid_ossp: yes
+      postgresql_users:
+        - name: how-much-time-left
+          pass: "{{ how_much_time_left_db_password }}"
+      postgresql_user_privileges:
+        - name: how-much-time-left
+          db: how-much-time-left
+          priv: "ALL"
 - hosts: webservers
   roles:
     - bootstrap
